@@ -1,0 +1,50 @@
+<h1>編輯旅程</h1>
+<script src="class/ckeditor/ckeditor.js"></script>
+<form action="tool.php" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+    <div class="form-group">
+        <label class="col-md-2 control-label">旅程名稱：</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" name="trip_title" id="trip_title" placeholder="請輸入旅程名稱" value="{$trip.trip_title}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label">旅程內容：</label>
+        <div class="col-md-10">
+            <textarea class="form-control" name="trip_content" id="trip_content" placeholder="請輸入旅程內容">{$trip.trip_content}</textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label">旅程價格：</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" name="trip_price" id="trip_price" placeholder="請輸入旅程價格" value="{$trip.trip_price}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label">旅程圖片：</label>
+        <div class="col-md-10">
+            <input type="file" name="trip_pic" id="trip_pic">
+            {if isset($trip.pic)}
+              <img src="{$trip.pic}" alt="{$trip.title}">
+            {/if}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+          {if isset($trip.trip_sn) and $trip.trip_sn > 0}
+              <input type="hidden" name="op" value="update_trip">
+              <input type="hidden" name="trip_sn" value="{$trip.trip_sn}">
+          {else}
+              <input type="hidden" name="op" value="insert_trip">
+          {/if}
+            <button type="submit" class="btn btn-primary">儲存</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    CKEDITOR.replace( 'trip_content' );
+</script>

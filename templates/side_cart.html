@@ -1,0 +1,21 @@
+<form action="bill.php" method="post" class="form-horizontal" role="form">
+  <div class="panel panel-info">
+    <div class="panel-heading">我的購物車</div>
+    <table class="table">
+      {foreach from=$cart key=trip_sn item=trip}
+        <tr>
+          <td><a href="index.php?trip_sn={$trip_sn}">{$trip.trip_title}</a></td>
+          <td>
+            <input type="text" name="trip_amount[{$trip_sn}]" value="{$trip.trip_amount}" class="form-control" style="width:40px;">
+          </td>
+        </tr>
+      {/foreach}
+      <tr>
+        <td colspan=2>
+          <input type="hidden" name="op" value="check_out">
+          <button type="submit" class="btn btn-block btn-success">結帳</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</form>
